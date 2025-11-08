@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambient Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vion-dark': '#0a0b0d',
+                        'vion-slate': '#1a1d23',
+                        'vion-gray': '#2a2f36',
+                        'vion-blue': '#00d4ff',
+                        'vion-green': '#00ff88',
+                        'vion-orange': '#ff6b35',
+                        'vion-purple': '#8b5cf6',
+                        'vion-amber': '#f59e0b'
+                    },
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        ::-webkit-scrollbar { display: none;}
+        
+        .ambient-glow {
+            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.4));
+        }
+        
+        .breathing-slow {
+            animation: breathing-slow 4s ease-in-out infinite;
+        }
+        
+        .breathing-medium {
+            animation: breathing-medium 3s ease-in-out infinite;
+        }
+        
+        .breathing-fast {
+            animation: breathing-fast 2s ease-in-out infinite;
+        }
+        
+        @keyframes breathing-slow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes breathing-medium {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.03); }
+        }
+        
+        @keyframes breathing-fast {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        
+        .gradient-shift {
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+        
+        .pulse-gentle {
+            animation: pulseGentle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulseGentle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .slide-fade {
+            animation: slideFade 0.8s ease-out;
+        }
+        
+        @keyframes slideFade {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .environment-auto {
+            background: linear-gradient(135deg, #0a0b0d 0%, #1a1d23 25%, #2a2f36 50%, #1a1d23 75%, #0a0b0d 100%);
+            background-size: 400% 400%;
+        }
+        
+        .night-mode {
+            background: linear-gradient(135deg, #000000 0%, #0a0b0d 25%, #1a1d23 50%, #0a0b0d 75%, #000000 100%);
+            background-size: 400% 400%;
+        }
+        
+        .day-mode {
+            background: linear-gradient(135deg, #1a1d23 0%, #2a2f36 25%, #3a3f46 50%, #2a2f36 75%, #1a1d23 100%);
+            background-size: 400% 400%;
+        }
+        
+        .contrast-enhance {
+            filter: contrast(1.2) brightness(1.1);
+        }
+        
+        .hue-warm {
+            filter: hue-rotate(15deg) saturate(1.1);
+        }
+        
+        .hue-cool {
+            filter: hue-rotate(-15deg) saturate(1.1);
+        }
+    </style>
+</head>
+<body class="environment-auto gradient-shift text-white font-inter overflow-hidden">
+
+<div id="ambient-theme-dashboard" class="h-screen w-screen flex relative">
+    
+    <!-- Left Environment Panel -->
+    <div id="environment-panel" class="w-80 bg-gradient-to-b from-vion-slate/80 to-vion-gray/80 backdrop-blur-sm p-6 flex flex-col justify-between">
+        
+        <!-- Header -->
+        <div id="environment-header" class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-orbitron font-medium text-gray-300">AMBIENT</h2>
+                <div class="w-3 h-3 bg-vion-blue rounded-full breathing-fast"></div>
+            </div>
+            
+            <!-- Environment Detection -->
+            <div id="environment-detection" class="bg-vion-dark/60 rounded-2xl p-6 slide-fade">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">ENVIRONMENT</span>
+                    <i class="fa-solid fa-eye text-vion-blue text-lg ambient-glow"></i>
+                </div>
+                <div class="text-2xl font-orbitron font-bold text-vion-blue mb-2">AUTO</div>
+                <div class="text-sm text-gray-400 mb-3">Adaptive lighting detected</div>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-gray-500">Brightness</span>
+                        <span class="text-vion-green">75%</span>
+                    </div>
+                    <div class="w-full bg-vion-gray rounded-full h-1">
+                        <div class="bg-vion-green h-1 rounded-full breathing-medium" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Light Sensor Data -->
+            <div id="light-sensor" class="bg-vion-dark/60 rounded-2xl p-6 slide-fade">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">LIGHT SENSOR</span>
+                    <i class="fa-solid fa-sun text-vion-amber text-lg pulse-gentle"></i>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="text-lg font-orbitron font-bold text-white">450</div>
+                        <div class="text-xs text-gray-400">lux</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-orbitron font-bold text-vion-amber">3200K</div>
+                        <div class="text-xs text-gray-400">warmth</div>
+                    </div>
+                </div>
+                <div class="mt-3 text-xs text-vion-blue">Twilight conditions</div>
+            </div>
+
+            <!-- Color Temperature -->
+            <div id="color-temp" class="bg-vion-dark/60 rounded-2xl p-6 slide-fade">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">HUE ADJUST</span>
+                    <i class="fa-solid fa-palette text-vion-purple text-lg"></i>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">Warm</span>
+                        <div class="w-24 h-2 bg-gradient-to-r from-vion-orange via-vion-amber to-vion-blue rounded-full"></div>
+                        <span class="text-sm text-gray-400">Cool</span>
+                    </div>
+                    <div class="text-center text-sm text-vion-amber">Currently: Neutral</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Presets -->
+        <div id="preset-controls" class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+                <button class="bg-vion-dark/60 rounded-xl p-3 hover:bg-vion-blue/20 transition-all duration-300 border border-vion-blue/30">
+                    <i class="fa-solid fa-moon text-vion-blue text-lg mb-2"></i>
+                    <div class="text-xs text-gray-300">Night</div>
+                </button>
+                <button class="bg-vion-dark/60 rounded-xl p-3 hover:bg-vion-amber/20 transition-all duration-300">
+                    <i class="fa-solid fa-sun text-vion-amber text-lg mb-2"></i>
+                    <div class="text-xs text-gray-300">Day</div>
+                </button>
+            </div>
+            <div class="text-xs text-gray-500 text-center">Auto-adjusting based on time</div>
+        </div>
+    </div>
+
+    <!-- Central Ambient Display -->
+    <div id="ambient-display" class="flex-1 flex items-center justify-center relative">
+        
+        <!-- Main Ambient Circle -->
+        <div class="relative">
+            <!-- Outer Glow Ring -->
+            <div class="w-[500px] h-[500px] rounded-full border border-vion-blue/20 relative breathing-slow">
+                <!-- Inner Gradient Ring -->
+                <div class="absolute inset-8 rounded-full bg-gradient-conic from-vion-blue via-vion-green via-vion-purple via-vion-amber to-vion-blue opacity-30 breathing-medium"></div>
+                
+                <!-- Core Display -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <div class="text-center space-y-6">
+                        <!-- Time Display -->
+                        <div class="text-6xl font-orbitron font-light text-white ambient-glow">19:24</div>
+                        <div class="text-lg text-gray-400">Evening Mode Active</div>
+                        
+                        <!-- Ambient Status -->
+                        <div class="bg-vion-dark/40 backdrop-blur-sm rounded-2xl p-6 space-y-4">
+                            <div class="flex items-center justify-center space-x-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-orbitron font-bold text-vion-blue">65%</div>
+                                    <div class="text-xs text-gray-400">Brightness</div>
+                                </div>
+                                <div class="w-px h-8 bg-vion-gray"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-orbitron font-bold text-vion-purple">1.2</div>
+                                    <div class="text-xs text-gray-400">Contrast</div>
+                                </div>
+                                <div class="w-px h-8 bg-vion-gray"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-orbitron font-bold text-vion-amber">3.2K</div>
+                                    <div class="text-xs text-gray-400">Warmth</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute -top-12 -left-12 w-6 h-6 bg-vion-blue rounded-full breathing-fast opacity-60"></div>
+            <div class="absolute -top-8 -right-16 w-4 h-4 bg-vion-green rounded-full breathing-medium opacity-40"></div>
+            <div class="absolute -bottom-10 -left-8 w-5 h-5 bg-vion-purple rounded-full breathing-slow opacity-50"></div>
+            <div class="absolute -bottom-16 -right-12 w-3 h-3 bg-vion-amber rounded-full breathing-fast opacity-70"></div>
+        </div>
+
+        <!-- Environment Indicators -->
+        <div id="environment-indicators" class="absolute top-12 left-12 space-y-4">
+            <div class="bg-vion-dark/60 backdrop-blur-sm rounded-xl p-4 slide-fade">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-cloud-sun text-vion-blue text-lg"></i>
+                    <div>
+                        <div class="text-sm font-medium text-white">Partly Cloudy</div>
+                        <div class="text-xs text-gray-400">External lighting: Moderate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-vion-dark/60 backdrop-blur-sm rounded-xl p-4 slide-fade">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-road text-vion-green text-lg"></i>
+                    <div>
+                        <div class="text-sm font-medium text-white">Highway</div>
+                        <div class="text-xs text-gray-400">Reduced UI complexity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Control Panel -->
+    <div id="control-panel" class="w-80 bg-gradient-to-b from-vion-slate/80 to-vion-gray/80 backdrop-blur-sm p-6 flex flex-col justify-between">
+        
+        <!-- Manual Controls -->
+        <div id="manual-controls" class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-orbitron font-medium text-gray-300">CONTROLS</h2>
+                <i class="fa-solid fa-sliders text-vion-purple text-lg"></i>
+            </div>
+
+            <!-- Brightness Control -->
+            <div id="brightness-control" class="bg-vion-dark/60 rounded-2xl p-6 slide-fade">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">BRIGHTNESS</span>
+                    <span class="text-sm text-vion-blue font-medium">65%</span>
+                </div>
+                <div class="w-full bg-vion-gray rounded-full h-3 mb-4">
+                    <div class="bg-gradient-to-r from-vion-blue to-vion-green h-3 rounded-full" style="width: 65%"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500">
+                    <span>Auto</span>
+                    <span>Manual</span>
+                </div>
+            </div>
+
+            <!-- Contrast Control -->
+            <div id="contrast-control" class="bg-vion-dark/60 rounded-2xl p-6 slide-fade">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">CONTRAST</span>
+                    <span class="text-sm text-vion-purple font-medium">1.2x</span>
+                </div>
+                <div class="w-full bg-vion-gray rounded-full h-3 mb-4">
+                    <div class="bg-gradient-to-r from-vion-purple to-vion-blue h-3 rounded-full" style="width: 60%"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500">
+                    <span>Standard</span>
+                    <span>Enhanced</span>
+                </div>
+            </div>
+
+            <!-- Color Themes -->
+            <div id="color-themes" class="bg-vion-dark/60 rounded-2xl p-6 slide-fade">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-400">THEME</span>
+                    <i class="fa-solid fa-paintbrush text-vion-green text-lg"></i>
+                </div>
+                <div class="grid grid-cols-4 gap-3">
+                    <button class="w-12 h-12 rounded-xl bg-gradient-to-br from-vion-blue to-vion-green border-2 border-vion-blue"></button>
+                    <button class="w-12 h-12 rounded-xl bg-gradient-to-br from-vion-purple to-vion-blue"></button>
+                    <button class="w-12 h-12 rounded-xl bg-gradient-to-br from-vion-amber to-vion-orange"></button>
+                    <button class="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-600 to-gray-400"></button>
+                </div>
+                <div class="text-xs text-gray-400 mt-3 text-center">Adaptive Blue Active</div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div id="system-status" class="space-y-4">
+            <div class="bg-vion-dark/60 rounded-xl p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm text-gray-400">Ambient System</span>
+                    <span class="text-sm text-vion-green flex items-center">
+                        <i class="fa-solid fa-circle-check mr-2"></i>
+                        Active
+                    </span>
+                </div>
+                <div class="text-xs text-gray-500">Next adjustment: 20:00</div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-3 gap-3">
+                <button class="bg-vion-dark/60 rounded-xl p-3 hover:bg-vion-blue/20 transition-all duration-300">
+                    <i class="fa-solid fa-home text-vion-blue text-lg"></i>
+                </button>
+                <button class="bg-vion-dark/60 rounded-xl p-3 hover:bg-vion-green/20 transition-all duration-300">
+                    <i class="fa-solid fa-arrow-left text-vion-green text-lg"></i>
+                </button>
+                <button class="bg-vion-dark/60 rounded-xl p-3 hover:bg-vion-purple/20 transition-all duration-300">
+                    <i class="fa-solid fa-cog text-vion-purple text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Gradient Overlays -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-vion-blue/30 to-transparent breathing-slow"></div>
+        <div class="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-vion-purple/30 to-transparent breathing-medium"></div>
+        <div class="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-transparent via-vion-green/20 to-transparent breathing-fast"></div>
+        <div class="absolute right-0 top-0 w-2 h-full bg-gradient-to-b from-transparent via-vion-amber/20 to-transparent breathing-slow"></div>
+    </div>
+</div>
+
+<script>
+window.addEventListener('load', function() {
+    // Simulate environment changes
+    let currentMode = 'auto';
+    let brightness = 65;
+    let contrast = 1.2;
+    let warmth = 3200;
+    
+    // Auto-adjust based on time
+    function adjustAmbientLighting() {
+        const hour = new Date().getHours();
+        const body = document.body;
+        
+        if (hour >= 22 || hour < 6) {
+            // Night mode
+            body.className = body.className.replace(/environment-auto|day-mode/, 'night-mode');
+            brightness = Math.max(30, brightness - 5);
+        } else if (hour >= 6 && hour < 18) {
+            // Day mode
+            body.className = body.className.replace(/environment-auto|night-mode/, 'day-mode');
+            brightness = Math.min(90, brightness + 5);
+        } else {
+            // Auto mode (twilight)
+            body.className = body.className.replace(/night-mode|day-mode/, 'environment-auto');
+        }
+        
+        // Update brightness display
+        document.querySelector('#brightness-control .text-vion-blue').textContent = brightness + '%';
+        document.querySelector('#brightness-control .bg-gradient-to-r').style.width = brightness + '%';
+    }
+    
+    // Simulate light sensor changes
+    function updateLightSensor() {
+        const luxValue = Math.floor(Math.random() * 200) + 350;
+        const warmthValue = Math.floor(Math.random() * 800) + 2800;
+        
+        document.querySelector('#light-sensor .text-lg:first-child').textContent = luxValue;
+        document.querySelector('#light-sensor .text-vion-amber').textContent = warmthValue + 'K';
+        
+        // Update environment description
+        const descriptions = ['Twilight conditions', 'Bright daylight', 'Overcast sky', 'Indoor lighting'];
+        document.querySelector('#light-sensor .text-vion-blue').textContent = descriptions[Math.floor(Math.random() * descriptions.length)];
+    }
+    
+    // Simulate real-time adjustments
+    setInterval(() => {
+        adjustAmbientLighting();
+        updateLightSensor();
+        
+        // Update time
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour12: false, 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
+        document.querySelector('.text-6xl').textContent = timeString;
+        
+        // Update mode description
+        const hour = now.getHours();
+        let modeText = 'Evening Mode Active';
+        if (hour >= 6 && hour < 12) modeText = 'Morning Mode Active';
+        else if (hour >= 12 && hour < 18) modeText = 'Day Mode Active';
+        else if (hour >= 18 && hour < 22) modeText = 'Evening Mode Active';
+        else modeText = 'Night Mode Active';
+        
+        document.querySelector('.text-lg.text-gray-400').textContent = modeText;
+        
+    }, 5000);
+    
+    // Theme switching
+    const themeButtons = document.querySelectorAll('#color-themes button');
+    themeButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            // Remove active state from all buttons
+            themeButtons.forEach(btn => btn.classList.remove('border-vion-blue'));
+            // Add active state to clicked button
+            this.classList.add('border-vion-blue');
+            
+            // Apply different filter effects based on theme
+            const body = document.body;
+            body.classList.remove('hue-warm', 'hue-cool', 'contrast-enhance');
+            
+            switch(index) {
+                case 0: // Blue-Green (default)
+                    break;
+                case 1: // Purple-Blue
+                    body.classList.add('hue-cool');
+                    break;
+                case 2: // Warm Orange
+                    body.classList.add('hue-warm');
+                    break;
+                case 3: // Monochrome
+                    body.classList.add('contrast-enhance');
+                    break;
+            }
+        });
+    });
+    
+    // Preset mode buttons
+    document.querySelector('#preset-controls button:first-child').addEventListener('click', function() {
+        document.body.className = document.body.className.replace(/environment-auto|day-mode/, 'night-mode gradient-shift');
+        this.classList.add('border', 'border-vion-blue/30');
+        document.querySelector('#preset-controls button:last-child').classList.remove('border', 'border-vion-blue/30');
+    });
+    
+    document.querySelector('#preset-controls button:last-child').addEventListener('click', function() {
+        document.body.className = document.body.className.replace(/environment-auto|night-mode/, 'day-mode gradient-shift');
+        this.classList.add('border', 'border-vion-blue/30');
+        document.querySelector('#preset-controls button:first-child').classList.remove('border', 'border-vion-blue/30');
+    });
+    
+    // Initial setup
+    adjustAmbientLighting();
+    updateLightSensor();
+});
+</script>
+
+</body>
+</html>
